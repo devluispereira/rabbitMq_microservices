@@ -14,7 +14,7 @@ import { SubMessageController } from './Sub/sub.message.RabbitController';
     RabbitMQModule.forRoot(RabbitMQModule, {
       exchanges: [
         {
-          name: 'serviceOne',
+          name: 'serviceTwo',
           type: 'direct',
         },
       ],
