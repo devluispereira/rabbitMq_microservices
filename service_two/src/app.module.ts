@@ -1,22 +1,29 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
+
+import {
+  RabbitMQModule,
+  MessageHandlerErrorBehavior,
+} from '@golevelup/nestjs-rabbitmq';
+import { PubMessageController } from './Pub/pub.message.controller';
+import { PubMessageService } from './Pub/pub.message..service';
+import { SubMessageService } from './Sub/sub.message.service';
+import { SubMessageController } from './Sub/sub.message.RabbitController';
 
 @Module({
   imports: [
     RabbitMQModule.forRoot(RabbitMQModule, {
       exchanges: [
         {
-          name: 'teste',
+          name: 'serviceOne',
           type: 'direct',
         },
       ],
       uri: 'amqp://localhost:5672',
+      defaultSubscribeErrorBehavior: MessageHandlerErrorBehavior.NACK,
+      defaultRpcErrorBehavior: MessageHandlerErrorBehavior.NACK,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [SubMessageService, SubMessageController, PubMessageService],
+  controllers: [PubMessageController],
 })
 export class AppModule {}
