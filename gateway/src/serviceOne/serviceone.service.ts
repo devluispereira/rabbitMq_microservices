@@ -9,7 +9,7 @@ export class ServiceOneService {
   constructor(private readonly pubRpcServiceMessage: PubMessageService) {}
 
   public async sendMessageServiceOne(): Promise<void | object> {
-    const response = await this.pubRpcServiceMessage.sendMessage({
+    const response = await this.pubRpcServiceMessage.sendMessageRcp({
       exchange: 'serviceOne',
       routingKey: '1q1',
     });
@@ -17,7 +17,7 @@ export class ServiceOneService {
   }
 
   public async sendMessageServiceOneAskServiceTwo(): Promise<void | object> {
-    const response = await this.pubRpcServiceMessage.sendMessage({
+    const response = await this.pubRpcServiceMessage.sendMessageRcp({
       exchange: 'serviceOne',
       routingKey: '1q2',
     });

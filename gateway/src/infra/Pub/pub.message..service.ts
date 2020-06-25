@@ -12,7 +12,7 @@ type RequestOptions = {
 export class PubMessageService {
   constructor(private amqpConnection: AmqpConnection) {}
 
-  public async sendMessage(
+  public async sendMessageRcp(
     receiver: RequestOptions,
     payload?: object,
   ): Promise<void | {}> {
