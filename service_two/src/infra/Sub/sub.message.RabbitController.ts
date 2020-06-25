@@ -19,30 +19,4 @@ export class SubMessageController {
       message: 'Service Two Ok',
     };
   }
-
-  // @RabbitRPC({
-  //   exchange: 'serviceTwo',
-  //   routingKey: '2q2',
-  //   queue: 'serviceTwo_queue2',
-  //   allowNonJsonMessages: true,
-  // })
-  // public async teste2(msg: any) {
-  //   try {
-  //     this.messageService.sendMessage(msg);
-
-  //     return { message: 'bodao' };
-  //   } catch (erro) {
-  //     return new Nack(true);
-  //   }
-  // }
-
-  // @RabbitSubscribe({
-  //   exchange: 'serviceTwo',
-  //   routingKey: '2q3',
-  //   queue: 'serviceTwo_queue3',
-  //   allowNonJsonMessages: true,
-  // })
-  // public async teste3(msg: any) {
-  //   this.messageService.sendMessage(msg);
-  // }
 }
