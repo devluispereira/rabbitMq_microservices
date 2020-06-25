@@ -1,34 +1,30 @@
 # Gatway
 
-### Iniciar o Gatewey
-
-    	yarn start:dev
-
-Dados de Conexão HTTP:
+HTTP Connection Data:
 
 - Local: http://localhost.com/3333
-- Protocolo: http.
+- Protocol: http.
 
-Dados de conexão RabbitMq:
+RabbitMq connection:
 
 - Local: amqp://localhost:5672
-- Protocolo: amqp.
-- acesso ao Rabbit:[http://localhost:15672/](http://localhost:15672/)
+- Protocol: amqp.
+- access to Rabbit:[http://localhost:15672/](http://localhost:15672/)
 - login: guest.
 - password:guest
 - exchange: gateway
 
-## Funcionalidades.
+## Functionalities.
 
-### Rotas de requisições via HTTP:
+### Request routes using HTTP:
 
-#### Verificar se o service One está ativo :
+#### Verify that service One is active :
 
-Quando a rota for chamada, o gateway envia para o RabbitMQ uma mensagem RPC para o service One response se está ativo .
+When the route is called, the gateway sends RabbitMQ an RPC message to the One response service if it is active.
 
-- Rota : http://localhost.com/3333/healthServiceOne
+- Rote : http://localhost.com/3333/healthServiceOne
 - Body: NULL
-- responsta esperada:
+- expected response:
 
 ```json
 {
@@ -38,11 +34,11 @@ Quando a rota for chamada, o gateway envia para o RabbitMQ uma mensagem RPC para
 
 #### Health service One Ask Service Two:
 
-Quando a rota for chamada, o gateway envia para o RabbitMQ uma mensagem RPC para o service One perguntar ao service Two via RPC se ele tambem está ativo. O service Two response ao service One que reponse novamento ao gatway
+When the route is called, the gateway sends RabbitMQ an RPC message to service One asking service Two via RPC if it is also active. Service Two response to service One that replaces the gatway
 
-- Rota : http://localhost.com/3333/healthServiceOne
+- Rote : http://localhost.com/3333/healthServiceOne
 - Body: NULL
-- Resposta esperada :
+- expected response :
 
 ```json
 {
