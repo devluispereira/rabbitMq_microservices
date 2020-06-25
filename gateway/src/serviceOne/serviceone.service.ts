@@ -6,10 +6,10 @@ import { PubMessageService } from 'src/infra/Pub/pub.message..service';
 
 @Injectable()
 export class ServiceOneService {
-  constructor(private readonly amqpConnection: PubMessageService) {}
+  constructor(private readonly pubRpcServiceMessage: PubMessageService) {}
 
   public async sendMessageServiceOne(): Promise<void | object> {
-    const response = await this.amqpConnection.sendMessage({
+    const response = await this.pubRpcServiceMessage.sendMessage({
       exchange: 'serviceOne',
       routingKey: '1q1',
     });
@@ -17,7 +17,7 @@ export class ServiceOneService {
   }
 
   public async sendMessageServiceOneAskServiceTwo(): Promise<void | object> {
-    const response = await this.amqpConnection.sendMessage({
+    const response = await this.pubRpcServiceMessage.sendMessage({
       exchange: 'serviceOne',
       routingKey: '1q2',
     });
