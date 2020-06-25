@@ -48,6 +48,8 @@ yarn start:debug
 
 ## Connections:
 
+<img src='./diagram.png'>
+
 HTTP Connection Data:
 
 - Local: http://localhost.com/3333
