@@ -7,11 +7,14 @@ import { Nack, AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 export class PubMessageService {
   constructor(private readonly amqpConnection: AmqpConnection) {}
 
-  public async sendMessageServiceTwo(payload: any): Promise<void | object> {
+  public async sendMessageServiceTwo(): Promise<void | object> {
     try {
-      await this.amqpConnection.publish('serviceTwo', '2q2', payload);
+      const response = await this.amqpConnection.request({
+        exchange: 'serviceTwo',
+        routingKey: '2q1',
+      });
 
-      return;
+      return response;
     } catch (error) {
       console.log('deu erro');
       return new Nack(true);

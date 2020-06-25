@@ -1,18 +1,18 @@
+import { Module } from '@nestjs/common';
+
 import {
   RabbitMQModule,
   MessageHandlerErrorBehavior,
 } from '@golevelup/nestjs-rabbitmq';
-import { Module } from '@nestjs/common';
-import { SubMessageService } from './Sub/sub.message.service';
-import { SubMessageController } from './Sub/sub.message.RabbitController';
+
 import { PubMessageService } from './Pub/pub.message..service';
 
 @Module({
   imports: [
-    RabbitMQModule.build({
+    RabbitMQModule.forRoot(RabbitMQModule, {
       exchanges: [
         {
-          name: 'serviceOne',
+          name: 'gateway',
           type: 'direct',
         },
       ],
@@ -21,7 +21,7 @@ import { PubMessageService } from './Pub/pub.message..service';
       defaultRpcErrorBehavior: MessageHandlerErrorBehavior.NACK,
     }),
   ],
-  providers: [SubMessageService, SubMessageController, PubMessageService],
-  controllers: [],
+  providers: [PubMessageService],
+  exports: [PubMessageService],
 })
 export class InfraModule {}

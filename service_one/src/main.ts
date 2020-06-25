@@ -7,12 +7,8 @@ import {
 } from '@nestjs/microservices';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.createMicroservice(AppModule);
 
-  await app.listen(3333, () =>
-    console.log(
-      'MicroServiceOne running, connect to RMQ and expose HTTP post on 3333',
-    ),
-  );
+  await app.listen(() => console.log('MicroServiceOne running'));
 }
 bootstrap();
