@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 
-import { RabbitMessage } from './Message/message.module';
+import { InfraModule } from './Infra/infra.module';
 
 @Module({
-  imports: [RabbitMessage],
+  imports: [InfraModule],
 })
 export class AppModule {}
